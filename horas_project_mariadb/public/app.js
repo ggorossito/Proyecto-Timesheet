@@ -1,0 +1,1 @@
+document.getElementById('app').innerHTML='<h1>Frontend Carga de Horas</h1><p>Usar endpoints API</p>'

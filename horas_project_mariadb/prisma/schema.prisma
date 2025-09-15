@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int     @id @default(autoincrement())
+  username  String  @unique
+  password  String
+  rol       String
+  nombre    String?
+  createdAt DateTime @default(now())
+  horas     Hora[]
+}
+
+model Proyecto {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String?
+  cliente     String?
+  estado      String  @default("activo")
+  createdAt   DateTime @default(now())
+  horas       Hora[]
+}
+
+model Hora {
+  id         Int      @id @default(autoincrement())
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  proyecto   Proyecto @relation(fields: [proyectoId], references: [id])
+  proyectoId Int
+  fecha      DateTime
+  cantidad   Float
+  descripcion String?
+  createdAt  DateTime @default(now())
+}
