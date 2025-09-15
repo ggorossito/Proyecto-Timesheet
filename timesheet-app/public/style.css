@@ -1,0 +1,5 @@
+body { font-family: sans-serif; margin: 2em; }
+h1 { color: #333; }
+form { margin: 1em 0; }
+input, select, button { margin: .2em; padding: .4em; }
+button { cursor: pointer; }

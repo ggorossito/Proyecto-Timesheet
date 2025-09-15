@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    image: mariadb:10.9
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: timesheet
+      MYSQL_USER: timesheet
+      MYSQL_PASSWORD: timesheet
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "mysql://timesheet:timesheet@db:3306/timesheet"
+      JWT_SECRET: "clave-muy-secreta"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

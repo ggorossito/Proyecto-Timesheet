@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int        @id @default(autoincrement())
+  username  String     @unique
+  email     String?    
+  nombre    String?
+  password  String
+  rol       String
+  createdAt DateTime   @default(now())
+  timesheets Timesheet[]
+}
+
+model Proyecto {
+  id         Int        @id @default(autoincrement())
+  code       String     @unique
+  nombre     String
+  cliente    String?
+  createdAt  DateTime   @default(now())
+  timesheets Timesheet[]
+}
+
+model Timesheet {
+  id         Int       @id @default(autoincrement())
+  fecha      DateTime
+  horas      Float
+  descripcion String?
+  usuario    Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  proyecto   Proyecto  @relation(fields: [proyectoId], references: [id])
+  proyectoId Int
+  createdAt  DateTime  @default(now())
+}
