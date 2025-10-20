@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Timesheet — Admin</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo-small"><div>TS</div><span>Timesheet</span></div>
+      <nav>
+        <a href="/admin.html" class="active">Panel Admin</a>
+        <a href="/dashboard.html">Dashboard</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn-ghost">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div class="welcome">Admin — <strong id="adminName"></strong></div>
+      </header>
+
+      <section class="container">
+        <div class="card">
+          <h3>Todos los registros</h3>
+          <table id="allEntries"><thead><tr><th>ID</th><th>Usuario</th><th>Proyecto</th><th>Fecha</th><th>Horas</th><th>Descripción</th></tr></thead><tbody></tbody></table>
+        </div>
+      </section>
+    </main>
+  </div>
+<script src="js/admin.js"></script>
+</body>
+</html>

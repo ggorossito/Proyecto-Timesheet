@@ -1,0 +1,17 @@
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authRoutes = require('./routes/auth');
+const apiRoutes = require('./routes/api');
+const app = express();
+const PORT = process.env.PORT || 4000;
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({ origin: true, credentials: true }));
+app.use('/', express.static(path.join(__dirname, '..', '..', 'frontend')));
+app.use('/api/auth', authRoutes);
+app.use('/api', apiRoutes);
+app.get('/health', (req,res)=> res.json({ ok:true }));
+app.listen(PORT, ()=> console.log('Timesheet backend listening on', PORT));

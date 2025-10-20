@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Timesheet — Dashboard</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo-small"><div>TS</div><span>Timesheet</span></div>
+      <nav>
+        <a href="/dashboard.html" class="active">Dashboard</a>
+        <a href="#entries" id="linkEntries">Registros</a>
+        <a href="#reports" id="linkReports">Reportes</a>
+        <a href="#profile" id="linkProfile">Perfil</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn-ghost">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div class="welcome">Hola, <strong id="userName"></strong></div>
+        <div id="kpis" class="kpis"></div>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h3>Cargar horas</h3>
+          <select id="projectSelect"></select>
+          <input id="dateInput" type="date">
+          <input id="hoursInput" type="number" step="0.5" placeholder="Horas">
+          <input id="descInput" placeholder="Descripción (opcional)">
+          <button id="saveBtn">Guardar</button>
+        </div>
+
+        <div class="card" id="entriesCard">
+          <h3>Últimos registros</h3>
+          <table id="entriesTable"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Horas</th><th>Usuario</th></tr></thead><tbody></tbody></table>
+        </div>
+
+        <div class="card" id="reportCard">
+          <h3>Reporte rápido</h3>
+          <div id="reportContent">Cargando métricas...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

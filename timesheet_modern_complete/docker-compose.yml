@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: timesheet_backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+      - ./db:/app/db
+    env_file:
+      - .env
+    command: sh -c "npm run seed && npm start"
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: timesheet_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
